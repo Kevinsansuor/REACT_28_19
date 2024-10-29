@@ -13,23 +13,23 @@ import { ThemeProvider } from '@emotion/react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-const themeheader = createTheme({
-  palette: {
-    black: {
-      main: '#D64933',
-      light: '#F8F4F9',
-      dark: '#A29415',
-      contrastText: '#000807',
-    },
-  },
-});
+// const themeheader = createTheme({
+//   palette: {
+//     black: {
+//       main: '#D64933',
+//       light: '#F8F4F9',
+//       dark: '#A29415',
+//       contrastText: '#000807',
+//     },
+//   },
+// });
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.white, 0.55),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.85),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -87,9 +87,9 @@ export default function PrimarySearchAppBar({ selectedCategory, setSelectedCateg
   };
 
   return (
-    <ThemeProvider theme={themeheader}>
+    // <ThemeProvider theme={themeheader}>
       <Box>
-        <AppBar position="sticky" color="black">
+        <AppBar position="sticky" color="primary">
           <Toolbar>
             <Box className="header-items" sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -132,7 +132,7 @@ export default function PrimarySearchAppBar({ selectedCategory, setSelectedCateg
           ))}
         </Menu>
       </Box>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import HomePage from './pages/(invitados)/HomePage'
+import PrimarySearchAppBar from './components/headers/navigation';
 
 function App() {
 
@@ -10,9 +11,14 @@ function App() {
   console.log(`Selected category: ${selectedCategory}`);
 
   return (
-      <HomePage selectedCategory={selectedCategory}
-      setSelectedCategory={setSelectedCategory}
-      />
+
+    <>
+
+    <HomePage selectedCategory={selectedCategory}
+    setSelectedCategory={setSelectedCategory}
+    />
+    </>
+
   )
 }
 

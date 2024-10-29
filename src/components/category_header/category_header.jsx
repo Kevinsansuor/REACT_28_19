@@ -7,7 +7,7 @@ export default function CategoryHeader({ selectedCategory }) {
   return (
     <Box>
       {selectedCategory && (
-        <Box sx={{ padding: 2, backgroundColor: 'red' }}>
+        <Box sx={{ padding: 2, backgroundColor: 'black', color: 'white' }}>
           <Typography variant="subtitle1">Categoría seleccionada: {selectedCategory}</Typography>
         </Box>
       )}
