@@ -3,13 +3,18 @@ import './App.css'
 import HomePage from './pages/(invitados)/HomePage'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  console.log("Rendering App component");
+  console.log(`Selected category: ${selectedCategory}`);
 
   return (
-      <HomePage id="root">
-
-      </HomePage>
+      <HomePage selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+      />
   )
 }
 
 export default App
+
