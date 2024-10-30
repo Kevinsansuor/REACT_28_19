@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar({ selectedCategory, setSelectedCategory }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   
-  const categories = ["Programación", "Videos musicales", "Cocina"];
+  const categories = ["Programación", "Videos musicales", "Cocina", "Videojuegos"];
 
   const handleFilterClick = (event) => {
     console.log("Filter button clicked");
