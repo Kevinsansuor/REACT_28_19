@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,16 +13,16 @@ import { ThemeProvider } from '@emotion/react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-// const themeheader = createTheme({
-//   palette: {
-//     black: {
-//       main: '#D64933',
-//       light: '#F8F4F9',
-//       dark: '#A29415',
-//       contrastText: '#000807',
-//     },
-//   },
-// });
+const themeheader = createTheme({
+  palette: {
+    withe: {
+      main: '#FEFFFE',
+      light: '#ffff',
+      dark: '#0B3954',
+      contrastText: '#000807',
+    },
+  },
+});
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,6 +67,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar({ selectedCategory, setSelectedCategory }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [searchValue, setSearchValue] = React.useState('');
   
   const categories = ["Programación", "Videos musicales", "Cocina", "Videojuegos"];
 
@@ -86,25 +87,41 @@ export default function PrimarySearchAppBar({ selectedCategory, setSelectedCateg
     handleClose();
   };
 
+  const handleSearchChange = (event) => {
+    console.log(`Search value changed: ${event.target.value}`);
+    setSearchValue(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    console.log(`Search submitted: ${searchValue}`);
+    setSelectedCategory(searchValue);
+  };
+
   return (
-    // <ThemeProvider theme={themeheader}>
+     <ThemeProvider theme={themeheader}>
       <Box>
-        <AppBar position="sticky" color="primary">
+        <AppBar position="sticky" color="withe.main">
           <Toolbar>
             <Box className="header-items" sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' }, color: '#0B3954' }}>
                 Yutu App
               </Typography>
 
-              <Search>
-                <SearchIconWrapper sx={{ display: { xs: 'none', md: 'flex' } }}>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Busqueda"
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-              </Search>
+              <form onSubmit={handleSearchSubmit}>
+                <Search sx={{ backgroundColor: '#FEFFFE', border: '2px solid', borderRadius: '100px', '&:hover': { borderColor: '#0B3954' } }}>
+                  <SearchIconWrapper sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Busqueda"
+                    inputProps={{ 'aria-label': 'search' }}
+                    sx={{ display: { xs: 'none', md: 'flex' }, borderColor: '#0B3954', border: '2px solid', borderRadius: '100px', '&:hover': { borderColor: '#0B3954' } }}
+                    value={searchValue}
+                    onChange={handleSearchChange}
+                  />
+                </Search>
+              </form>
 
               <Box sx={{ display: { md: 'flex' } }}>
                 <IconButton
@@ -132,7 +149,8 @@ export default function PrimarySearchAppBar({ selectedCategory, setSelectedCateg
           ))}
         </Menu>
       </Box>
-    // </ThemeProvider>
+     </ThemeProvider>
   );
 }
+
 

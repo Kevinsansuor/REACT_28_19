@@ -86,9 +86,11 @@ const HomePage = ({ selectedCategory, setSelectedCategory }) => {
                 setSelectedVideo(null);
               }}
             >
-              <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'black', color: 'white' }}>
-                <CloseIcon />
-              </IconButton>
+              <Slide direction="down" in={open} unmountOnExit>
+                <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'black', color: 'white' }}>
+                  <CloseIcon />
+                </IconButton>
+              </Slide>
               {selectedVideo && (
                 <Container
                   disableGutters={true}
