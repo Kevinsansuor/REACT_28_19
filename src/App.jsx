@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 import HomePage from './pages/(invitados)/HomePage'
-import PrimarySearchAppBar from './components/headers/navigation';
 
 function App() {
 

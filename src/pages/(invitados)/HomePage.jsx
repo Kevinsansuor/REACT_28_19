@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/headers/navigation';
 import Container from '@mui/material/Container';
 import CategoryHeader from '../../components/category_header/category_header';
-import { fetchYouTubeVideos } from '../../youtube/api';
+import { fetchYouTubeVideo } from '../../youtube/api';
 import { Box, Typography, Card, CardContent, CardMedia, Dialog, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import Cardvideo from '../../components/Cardvideo'
+import Ejemplo from '../../components/ejemplo';
 
 const HomePage = ({ selectedCategory, setSelectedCategory }) => {
   const [videos, setVideos] = useState([]);
@@ -15,12 +17,12 @@ const HomePage = ({ selectedCategory, setSelectedCategory }) => {
   useEffect(() => {
     console.log('useEffect triggered with selectedCategory:', selectedCategory);
     if (selectedCategory) {
-      fetchYouTubeVideos(selectedCategory)
+      fetchYouTubeVideo(selectedCategory)
         .then((videoResults) => {
           console.log('Video results fetched:', videoResults);
           setVideos(videoResults);
         })
-        .catch((error) => console.error('Error fetching videos:', error));
+        .catch((error) => console.error('Error con la API de YouTube:', error));
     }
   }, [selectedCategory]);
 
@@ -57,20 +59,13 @@ const HomePage = ({ selectedCategory, setSelectedCategory }) => {
             <Container maxWidth="md" disableGutters={true}>
               <Box sx={{ display: { xs: 'flex', sm: 'flex' }, gap: 2, flexDirection: 'column' } }>
                 {videos.map((video) => (
-                  <Card key={video.id.videoId} onClick={() => handleOpenVideo(video.id.videoId)} sx={{ cursor: 'pointer', display: 'flex', flexDirection: { xs: 'row', sm: 'column' }, alignItems: 'start', width: '100%', height: '100%' }}>
-                    <CardMedia component="img" image={video.snippet.thumbnails.medium.url} alt={video.snippet.title} sx={{ height: "350px", width: '100%', backgroundColor: 'black'}}/>
-                    <CardContent sx={{ display: 'flex', flexDirection: { xs: 'row', sm: 'column' }, padding: 2,flexGrow: 1 , width: '100%', gap: 2 }}>
-                      <Typography variant="subtitle1">{video.snippet.title}</Typography>
-                      
-                      <Typography variant="body2" color="textSecondary">
-                        {video.snippet.description}
-                      </Typography>
+                  <Ejemplo componente = {Cardvideo} video = {video} key={video.id.videoId} handleOpenVideo={handleOpenVideo}>
 
-                      <Typography variant="body2" color="textSecondary">
-                        {video.snippet.channelTitle}
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                  </Ejemplo>
+                  // <Cardvideo video = {video} key={video.id.videoId} handleOpenVideo={handleOpenVideo}>
+
+                  // </Cardvideo>
+
                 ))}
               </Box>
             </Container>

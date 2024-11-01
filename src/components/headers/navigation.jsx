@@ -12,6 +12,7 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import BrandName from '../brandNameComponent';
 
 const themeheader = createTheme({
   palette: {
@@ -65,7 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({ selectedCategory, setSelectedCategory }) {
+export default function PrimarySearchAppBar({ setSelectedCategory }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [searchValue, setSearchValue] = React.useState('');
   
@@ -104,9 +105,10 @@ export default function PrimarySearchAppBar({ selectedCategory, setSelectedCateg
         <AppBar position="sticky" color="withe.main">
           <Toolbar>
             <Box className="header-items" sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' }, color: '#0B3954' }}>
-                Yutu App
-              </Typography>
+              
+            <BrandName >
+            {/* Nombre de la marca */}
+            </BrandName>
 
               <form onSubmit={handleSearchSubmit}>
                 <Search sx={{ backgroundColor: '#FEFFFE', border: '2px solid', borderRadius: '100px', '&:hover': { borderColor: '#0B3954' } }}>
